@@ -1,8 +1,6 @@
 LAZY_PLUGIN_SPEC = {}
 -- This queues something for us
-function spec(item)
-  table.insert(LAZY_PLUGIN_SPEC, { import = item })
-end
+function spec(item) table.insert(LAZY_PLUGIN_SPEC, { import = item }) end
 
 -- TODO test the todo comment
 

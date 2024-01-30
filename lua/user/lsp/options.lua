@@ -27,7 +27,7 @@ local M = {
   -- these are language servers to install
   servers = {
     "lua_ls",
---    lua_ls = lua.server,
+    --    lua_ls = lua.server,
     -- "cssls",
     -- "html",
     -- "tsserver",

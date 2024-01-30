@@ -4,8 +4,6 @@ local M = {
   "ellisonleao/glow.nvim",
 }
 
-function M.config()
-  require("glow").setup()
-end
+function M.config() require("glow").setup() end
 
 return M

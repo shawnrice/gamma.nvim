@@ -10,7 +10,7 @@ local M = {
     -- your configuration comes here
     -- or leave it empty to use the default settings
     -- refer to the configuration section below
-  }
+  },
 }
 
 -- TODO: This is a todo
@@ -23,9 +23,7 @@ local opts = { noremap = true, silent = true }
 function M.config()
   local tc = require("todo-comments")
 
-  local function normal(keys, command)
-    vim.keymap.set("n", keys, command, opts)
-  end
+  local function normal(keys, command) vim.keymap.set("n", keys, command, opts) end
 
   normal("]t", tc.jump_next)
   normal("[t", tc.jump_prev)

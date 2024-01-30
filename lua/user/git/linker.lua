@@ -5,19 +5,19 @@ local M = {
 }
 
 function M.config()
-  local wk = require "which-key"
+  local wk = require("which-key")
   wk.register({
     g = {
       name = "Git",
       y = { "<cmd>GitLink!<cr>", "Git link" },
       Y = { "<cmd>GitLink blam<cr>", "Git link blame" },
-    }
-  }, { prefix = "<leader>"})
+    },
+  }, { prefix = "<leader>" })
 
-  require("gitlinker").setup {
+  require("gitlinker").setup({
     message = false,
     console_log = false,
-  }
+  })
 end
 
 return M

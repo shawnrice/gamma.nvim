@@ -3,9 +3,9 @@ local M = {
   dependencies = {
     { "nvim-lua/plenary.nvim" },
     { "folke/which-key.nvim" },
-    { 
-      "nvim-telescope/telescope-fzf-native.nvim", 
-      build = "make", 
+    {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make",
       lazy = true,
     },
     -- @see https://github.com/crispgm/telescope-heading.nvim
@@ -14,12 +14,11 @@ local M = {
   },
 }
 
-
 local function setup_keymaps()
   local wk = require("which-key")
 
   wk.register({
-    ["<leader>"] = { "<Cmd>Telescope frecency workspace=CWD<CR>", "Recent files"},
+    ["<leader>"] = { "<Cmd>Telescope frecency workspace=CWD<CR>", "Recent files" },
     b = {
       name = "Buffer",
       b = { "<cmd>Telescope buffers previewer=false<cr>", "Find" },
@@ -37,8 +36,9 @@ local function setup_keymaps()
     g = {
       name = "Git",
       b = {
-        "<cmd>Telescope git_branches<cr>", "Checkout branch"
-      }
+        "<cmd>Telescope git_branches<cr>",
+        "Checkout branch",
+      },
     },
   }, { prefix = "<leader>" })
 end
@@ -145,10 +145,10 @@ function M.config()
     },
     extensions = {
       fzf = {
-        fuzzy = true,                   -- false will only do exact matching
+        fuzzy = true, -- false will only do exact matching
         override_generic_sorter = true, -- override the generic sorter
-        override_file_sorter = true,    -- override the file sorter
-        case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
+        override_file_sorter = true, -- override the file sorter
+        case_mode = "smart_case", -- or "ignore_case" or "respect_case"
       },
       heading = {
         treesitter = true,
@@ -156,9 +156,9 @@ function M.config()
       frecency = {
         show_scores = true,
         show_unindexed = true,
-      ignore_patterns = { "*.git/*", "*/tmp/*" },
-      disable_devicons = false,
-      }
+        ignore_patterns = { "*.git/*", "*/tmp/*" },
+        disable_devicons = false,
+      },
     },
   })
 

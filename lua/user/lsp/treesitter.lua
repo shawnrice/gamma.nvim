@@ -14,7 +14,7 @@ function M.config()
     autopairs = { enable = true },
     autotag = { enable = true },
     ensure_installed = require("user.lsp.options").languages,
-    highlight = { 
+    highlight = {
       enable = true,
       disable = function(_, buf)
         local max_filesize = 100 * 1024

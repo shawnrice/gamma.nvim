@@ -1,4 +1,4 @@
- local M = {
+local M = {
   "hrsh7th/nvim-cmp",
   event = "InsertEnter",
   dependencies = {
@@ -163,4 +163,4 @@ function M.config()
   })
 end
 
- return M
+return M

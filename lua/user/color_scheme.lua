@@ -1,7 +1,7 @@
 -- @see https://github.com/navarasu/onedark.nvim
 local OneDark = {
   "navarasu/onedark.nvim",
-  priority = 1000
+  priority = 1000,
 }
 
 function OneDark.config()
@@ -12,16 +12,14 @@ function OneDark.config()
 end
 
 -- maybe use this one instead: https://github.com/luisiacc/gruvbox-baby
-local M = { 
-  "ellisonleao/gruvbox.nvim", 
+local M = {
+  "ellisonleao/gruvbox.nvim",
   priority = 1000,
-  config = function() 
+  config = function()
     vim.o.background = "dark" -- or "light" for light mode
     vim.cmd([[colorscheme gruvbox]])
-  end, 
-  opts = {
-
-  }
+  end,
+  opts = {},
 }
 
 -- return OneDark

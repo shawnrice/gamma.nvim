@@ -1,13 +1,13 @@
 local M = {
   json = {
-      schemas = require('schemastore').json.schemas {
-        select = {
-          'Renovate',
-          'GitHub Workflow Template Properties'
-        }
+    schemas = require("schemastore").json.schemas({
+      select = {
+        "Renovate",
+        "GitHub Workflow Template Properties",
       },
-      validate = { enable = true },
-    }
+    }),
+    validate = { enable = true },
+  },
 }
 
 return M

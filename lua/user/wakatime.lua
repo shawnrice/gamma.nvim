@@ -3,4 +3,3 @@ local config = {
 }
 
 return config
-

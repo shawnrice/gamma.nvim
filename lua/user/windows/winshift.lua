@@ -1,12 +1,12 @@
 -- @see https://github.com/sindrets/winshift.nvim
 local M = {
-  'sindrets/winshift.nvim'
+  "sindrets/winshift.nvim",
 }
 
 function M.config()
   require("winshift").setup({
-    highlight_moving_win = true,  -- Highlight the window being moved
-    focused_hl_group = "Visual",  -- The highlight group used for the moving window
+    highlight_moving_win = true, -- Highlight the window being moved
+    focused_hl_group = "Visual", -- The highlight group used for the moving window
     moving_win_options = {
       -- These are local options applied to the moving window while it's
       -- being moved. They are unset when you leave Win-Move mode.
@@ -50,10 +50,10 @@ function M.config()
           -- This table allows you to indicate to the window picker that a window
           -- should be ignored if its buffer matches any of the following criteria.
           cur_win = true, -- Filter out the current window
-          floats = true,  -- Filter out floating windows
-          filetype = {},  -- List of ignored file types
-          buftype = {},   -- List of ignored buftypes
-          bufname = {},   -- List of vim regex patterns matching ignored buffer names
+          floats = true, -- Filter out floating windows
+          filetype = {}, -- List of ignored file types
+          buftype = {}, -- List of ignored buftypes
+          bufname = {}, -- List of vim regex patterns matching ignored buffer names
         },
         ---A function used to filter the list of selectable windows.
         ---@param winids integer[] # The list of selectable window IDs.

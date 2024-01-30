@@ -1,5 +1,5 @@
 local M = {
-    "hedyhli/outline.nvim",
+  "hedyhli/outline.nvim",
   lazy = true,
   cmd = { "Outline", "OutlineOpen" },
   keys = { -- Example mapping to toggle outline

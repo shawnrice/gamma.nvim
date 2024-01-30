@@ -1,12 +1,10 @@
 local M = {
-  'b0o/incline.nvim',
+  "b0o/incline.nvim",
   opts = {},
   -- Optional: Lazy load Incline
-  event = 'VeryLazy',
+  event = "VeryLazy",
 }
 
-function M.config()
-require('incline').setup()
-end
+function M.config() require("incline").setup() end
 
 return M
