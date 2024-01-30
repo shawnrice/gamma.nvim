@@ -28,7 +28,6 @@ local lsp = {
   },
 }
 
-
 function lsp.lsp_keymaps(bufnr)
   local opts = { noremap = true, silent = true }
   local keymap = vim.api.nvim_buf_set_keymap
@@ -53,7 +52,6 @@ function lsp.toggle_inlay_hints()
   local bufnr = vim.api.nvim_get_current_buf()
   vim.lsp.inlay_hint.enable(bufnr, not vim.lsp.inlay_hint.is_enabled(bufnr))
 end
-
 
 lsp.on_attach = function(client, bufnr)
   lsp_keymaps(bufnr)
@@ -86,15 +84,14 @@ local function keymaps()
   })
 end
 
-
 local default_diagnostic_config = {
   signs = {
     active = true,
     values = {
       { name = "DiagnosticSignError", text = icons.diagnostics.Error },
-      { name = "DiagnosticSignWarn", text = icons.diagnostics.Warning },
-      { name = "DiagnosticSignHint", text = icons.diagnostics.Hint },
-      { name = "DiagnosticSignInfo", text = icons.diagnostics.Information },
+      { name = "DiagnosticSignWarn",  text = icons.diagnostics.Warning },
+      { name = "DiagnosticSignHint",  text = icons.diagnostics.Hint },
+      { name = "DiagnosticSignInfo",  text = icons.diagnostics.Information },
     },
   },
   virtual_text = true,
@@ -110,7 +107,6 @@ local default_diagnostic_config = {
     prefix = "",
   },
 }
-
 
 -- local function lsp_keymaps(bufnr)
 --   local opts = { noremap = true, silent = true }
@@ -170,9 +166,9 @@ end
 
 function lsp.config()
   local lspconfig = require("lspconfig")
-  
+
   vim.diagnostic.config(default_diagnostic_config)
-  
+
   for _, sign in ipairs(vim.tbl_get(vim.diagnostic.config(), "signs", "values") or {}) do
     vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
   end
@@ -182,14 +178,14 @@ function lsp.config()
   require("lspconfig.ui.windows").default_options.border = "rounded"
 
   local servers = lsp_options.servers
-  
+
   for _, server in pairs(servers) do
     local opts = {
       on_attach = lsp.on_attach,
       capabilities = lsp.common_capabilities(),
     }
 
-    local require_ok, settings = pcall(require, "user.lspsettings." .. server)
+    local require_ok, settings = pcall(require, "user.lsp.settings." .. server)
     if require_ok then opts = vim.tbl_deep_extend("force", settings, opts) end
 
     if server == "lua_ls" then require("neodev").setup({}) end

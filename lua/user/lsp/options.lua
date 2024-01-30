@@ -26,7 +26,8 @@ local M = {
   },
   -- these are language servers to install
   servers = {
-    lua_ls = lua.server,
+    "lua_ls",
+--    lua_ls = lua.server,
     -- "cssls",
     -- "html",
     -- "tsserver",
@@ -34,8 +35,9 @@ local M = {
     -- "tsserver",
     -- "pyright",
     -- "bashls",
-    -- "jsonls",
-    -- "yamlls",
+    "taplo", -- toml
+    "jsonls",
+    "yamlls",
   },
 }
 

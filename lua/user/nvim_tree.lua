@@ -9,6 +9,28 @@ local M = {
   },
 }
 
+function NvimTreeTrash()
+  local lib = require("nvim-tree.lib")
+  local node = lib.get_node_at_cursor()
+  local trash_cmd = "trash "
+
+  local function get_user_input_char()
+    local c = vim.fn.getchar()
+    return vim.fn.nr2char(c)
+  end
+
+  print("Trash " .. node.name .. " ? y/n")
+
+  if get_user_input_char():match("^y") and node then
+    vim.fn.jobstart(trash_cmd .. node.absolute_path, {
+      detach = true,
+      on_exit = function(job_id, data, event) lib.refresh_tree() end,
+    })
+  end
+
+  vim.api.nvim_command("normal :esc<CR>")
+end
+
 -- function to sort naturally
 local function natural_cmp(left, right)
   left = left.name:lower()
@@ -128,6 +150,10 @@ function M.config()
 
   local api = require("nvim-tree.api")
   api.events.subscribe(api.events.Event.FileCreated, function(file) vim.cmd("edit " .. file.fname) end)
+
+  vim.g.nvim_tree_bindings = {
+    { key = "d", cb = ":lua NvimTreeTrash()<CR>" },
+  }
 end
 
 return M

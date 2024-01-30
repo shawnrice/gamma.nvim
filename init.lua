@@ -33,12 +33,20 @@ spec("user.markdown.peek")
 
 spec("user.lsp.treesitter")
 spec("user.lsp.cmp")
+spec("user.lsp.mason")
 spec("user.lsp.setup")
 spec("user.lsp.lang.json")
 spec("user.lsp.outline")
 spec("user.lsp.none_ls")
 
 spec("user.which_key")
+
+spec("user.ui.lualine")
+spec("user.ui.incline")
+spec("user.ui.bufferline")
+
+spec("user.windows.windows")
+spec("user.windows.winshift")
 
 spec("user.wakatime")
 
