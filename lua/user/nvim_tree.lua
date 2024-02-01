@@ -149,7 +149,9 @@ function M.config()
   }, { prefix = "<leader>" })
 
   local api = require("nvim-tree.api")
-  api.events.subscribe(api.events.Event.FileCreated, function(file) vim.cmd("edit " .. file.fname) end)
+  api.events.subscribe(api.events.Event.FileCreated, function(file)
+    vim.defer_fn(function() vim.cmd("edit " .. file.fname) end, 10)
+  end)
 
   vim.g.nvim_tree_bindings = {
     { key = "d", cb = ":lua NvimTreeTrash()<CR>" },

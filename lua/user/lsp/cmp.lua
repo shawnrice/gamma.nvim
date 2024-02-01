@@ -55,6 +55,8 @@ function M.config()
 
   local icons = require("user.icons")
 
+  -- set completeopt=menu,menuone,noselect
+
   cmp.setup({
     snippet = {
       expand = function(args)
@@ -73,9 +75,7 @@ function M.config()
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       }),
-      -- Accept currently selected item. If none selected, `select` first item.
-      -- Set `select` to `false` to only confirm explicitly selected items.
-      ["<CR>"] = cmp.mapping.confirm({ select = true }),
+      ["<CR>"] = cmp.mapping.confirm({ select = false }),
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()

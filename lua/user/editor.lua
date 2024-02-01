@@ -6,6 +6,7 @@ local M = {
   require("user.editor.zen"),
   require("user.editor.indentline"),
   require("user.editor.vim_visual_multi"),
+  require("user.editor.ufo"),
   --  require("user.editor.outline"),
 }
 

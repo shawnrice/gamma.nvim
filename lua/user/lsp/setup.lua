@@ -69,7 +69,7 @@ local function keymaps()
     },
     i = { "<cmd>LspInfo<cr>", "Info" },
     j = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic" },
-    h = { "<cmd>lua require('user.lsp_config').toggle_inlay_hints()<cr>", "Hints" },
+    h = { "<cmd>lua require('user.lsp').toggle_inlay_hints()<cr>", "Hints" },
     k = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev Diagnostic" },
     l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
     q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
@@ -107,20 +107,6 @@ local default_diagnostic_config = {
     prefix = "",
   },
 }
-
--- local function lsp_keymaps(bufnr)
---   local opts = { noremap = true, silent = true }
---   local keymap = vim.api.nvim_buf_set_keymap
-
---   -- @todo Move this to keymap.lua
-
---   keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
---   keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
---   keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
---   keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
---   keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
---   keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
--- end
 
 -- This function gets called when an LSP attaches to a buffer.
 local function on_attach(_, bufnr)
@@ -166,6 +152,9 @@ end
 
 function lsp.config()
   local lspconfig = require("lspconfig")
+
+  -- register global keymaps
+  keymaps()
 
   vim.diagnostic.config(default_diagnostic_config)
 
@@ -238,9 +227,4 @@ end
 --   })
 -- end
 
-local M = {
-  treesitter,
-  lsp,
-}
-
-return M
+return lsp
