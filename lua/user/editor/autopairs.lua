@@ -1,17 +1,18 @@
 local M = {
   "windwp/nvim-autopairs",
-  opts = {
-    fast_wrap = {},
-    disable_filetype = { "TelescopePrompt", "vim" },
-  },
+  dependencies = { "hrsh7th/nvim-cmp" },
 }
 
-function M.config(_, opts)
-  require("nvim-autopairs").setup(opts)
+M.config = function()
+  require("nvim-autopairs").setup({
+    check_ts = true,
+    disable_filetype = { "TelescopePrompt", "spectre_panel" },
+  })
 
-  -- setup cmp for autopairs
+  -- If you want to automatically add `(` after selecting a function or method
   local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-  require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+  local cmp = require("cmp")
+  cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 end
 
 return M
