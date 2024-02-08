@@ -1,10 +1,15 @@
 local M = {}
 
-local function clean_messages(messages)
-  -- Replace carriage returns and line feeds with a newline
-  messages = messages:gsub("\r\n", "\n"):gsub("\r", "\n")
-  -- Split the cleaned messages
-  return vim.split(messages, "\n", { plain = true })
+local function clean_messages(result)
+  -- Check if 'result' has an 'output' key and it's not nil
+  if result.output then
+    -- Replace carriage returns and line feeds with a newline
+    local cleaned_output = result.output:gsub("\r\n", "\n"):gsub("\r", "\n")
+    -- Split the cleaned messages
+    return vim.split(cleaned_output, "\n", { plain = true })
+  end
+  -- Return an empty table if there's no output to clean
+  return {}
 end
 
 -- Function to create a popup with messages

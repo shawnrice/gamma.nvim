@@ -4,6 +4,21 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- function concat_tables(...)
+--   local result = {}
+--   local args = { ... }
+--   for _, t in ipairs(args) do
+--     if type(t) == "table" then -- Check if the argument is a table
+--       for _, v in ipairs(t) do
+--         table.insert(result, v)
+--       end
+--     else
+--       error("concat_tables expects table arguments, but received a " .. type(t))
+--     end
+--   end
+--   return result
+-- end
+
 require("user.options")
 require("user.autocmds")
 -- require("user.keymaps").setup()
@@ -28,15 +43,15 @@ local plugins = {
   -- Useful plugin to show you pending keybinds.
   { "folke/which-key.nvim", opts = {} },
 
-  {
-    "EdenEast/nightfox.nvim",
-    priority = 1000,
-    lazy = false,
-    config = function()
-      vim.o.background = "dark"
-      vim.cmd("colorscheme " .. "nordfox")
-    end,
-  },
+  -- {
+  --   "EdenEast/nightfox.nvim",
+  --   priority = 1000,
+  --   lazy = false,
+  --   config = function()
+  --     vim.o.background = "dark"
+  --     vim.cmd("colorscheme " .. "nordfox")
+  --   end,
+  -- },
 
   {
     --- my show messages uses this. If nothing else does, then I should find something else
@@ -143,6 +158,8 @@ require("lazy").setup({
   require("kickstart.plugins.debug"),
   require("user.ui"),
   require("user.editor"),
+  require("user.ui.color_scheme"),
+  require("user.navigation.navbuddy"),
   change_detection = {
     enabled = true,
     notify = false,

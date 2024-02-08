@@ -15,38 +15,19 @@ vim.api.nvim_set_hl(0, "SymbolUsageDef", { fg = h("Type").fg, bg = h("CursorLine
 vim.api.nvim_set_hl(0, "SymbolUsageImpl", { fg = h("@keyword").fg, bg = h("CursorLine").bg, italic = true })
 
 local function text_format(symbol)
-  local res = {}
-  local push = function(...)
-    local args = { ... }
-    for _, v in ipairs(args) do
-      table.insert(res, v)
-    end
-  end
-
-  local left = { "", "SymbolUsageRounding" }
-  local right = { "", "SymbolUsageRounding" }
+  local fragments = {}
 
   if symbol.references then
     local usage = symbol.references <= 1 and "usage" or "usages"
-    push(
-      left,
-      { "󰌹 ", "SymbolUsageRef" },
-      { symbol.references .. " " .. ("%s"):format(usage), "SymbolUsageContent" },
-      right
-    )
+    local num = symbol.references == 0 and "no" or symbol.references
+    table.insert(fragments, ("%s %s"):format(num, usage))
   end
 
-  if symbol.definition then
-    if #res > 0 then table.insert(res, { " ", "NonText" }) end
-    push(left, { "󰳽 ", "SymbolUsageDef" }, { symbol.definition .. " defs", "SymbolUsageContent" }, right)
-  end
+  if symbol.definition then table.insert(fragments, symbol.definition .. " defs") end
 
-  if symbol.implementation then
-    if #res > 0 then table.insert(res, { " ", "NonText" }) end
-    push(left, { "󰡱 ", "SymbolUsageImpl" }, { symbol.implementation .. " impls", "SymbolUsageContent" }, right)
-  end
+  if symbol.implementation then table.insert(fragments, symbol.implementation .. " impls") end
 
-  return res
+  return table.concat(fragments, ", ")
 end
 
 function M.config()
