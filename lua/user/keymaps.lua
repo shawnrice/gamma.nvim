@@ -99,6 +99,17 @@ function M.setup()
   nox("<D-Up>", "gg")
   nox("<D-Down>", "G")
 
+  vim.api.nvim_create_user_command("MoveToEndOfLineContent", function()
+    vim.cmd("normal! g_")
+    if vim.fn.col(".") < vim.fn.col("$") - 1 then vim.cmd("normal! l") end
+  end, {})
+
+  -- Move to the beginning or end of a lines
+  k("i", "<D-Right>", "<cmd>MoveToEndOfLineContent<CR>", opts)
+  k("i", "<D-Left>", "<C-\\><C-o>^", opts)
+  k("i", "<D-s>", "<C-\\><C-o>:w<CR>", opts)
+  nox("<D-s>", ":w<CR>")
+
   -- Move left or right a word
   nox("<M-Left>", "b")
   nox("<M-Right>", "w")

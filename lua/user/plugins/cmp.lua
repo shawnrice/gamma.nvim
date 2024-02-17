@@ -1,6 +1,7 @@
 local M = {
   -- Autocompletion
   "hrsh7th/nvim-cmp",
+  event = "VimEnter",
   dependencies = {
     -- Snippet Engine & its associated nvim-cmp source
     "L3MON4D3/LuaSnip",
@@ -11,12 +12,24 @@ local M = {
     "hrsh7th/cmp-path",
 
     -- Adds a number of user-friendly snippets
-    "rafamadriz/friendly-snippets",
+    -- "rafamadriz/friendly-snippets",
 
-    "onsails/lspkind.nvim",
+    {
+      -- @see https://github.com/onsails/lspkind.nvim
+      "onsails/lspkind.nvim",
+    },
+
+    {
+      "danymat/neogen",
+      dependencies = "nvim-treesitter/nvim-treesitter",
+      config = true,
+      -- Uncomment next line if you want to follow only stable versions
+      version = "*",
+    },
   },
 }
 
+--
 function M.config()
   -- [[ Configure nvim-cmp ]]
   -- See `:help cmp`
@@ -26,6 +39,8 @@ function M.config()
 
   require("luasnip.loaders.from_vscode").lazy_load()
   luasnip.config.setup({})
+
+  require("neogen").setup({ snippet_engine = "luasnip" })
 
   cmp.setup({
     snippet = {

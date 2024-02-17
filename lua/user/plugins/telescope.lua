@@ -51,18 +51,24 @@ function M.config()
       mappings = {
         i = {
           ["<C-u>"] = false,
-          ["<C-d>"] = false,
+          ["<C-d>"] = actions.delete_buffer + actions.move_to_top,
           ["<C-n>"] = actions.cycle_history_next,
           ["<C-p>"] = actions.cycle_history_prev,
 
           ["<C-j>"] = actions.move_selection_next,
           ["<C-k>"] = actions.move_selection_previous,
+          ["<esc>"] = actions.close,
         },
         n = {
           ["<esc>"] = actions.close,
           ["j"] = actions.move_selection_next,
           ["k"] = actions.move_selection_previous,
           ["q"] = actions.close,
+        },
+      },
+      pickers = {
+        find_files = {
+          hidden = true,
         },
       },
     },

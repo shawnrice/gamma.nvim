@@ -19,6 +19,46 @@ vim.g.maplocalleader = " "
 --   return result
 -- end
 
+local function open_url_under_cursor()
+  local url = vim.fn.expand("<cfile>") -- Get the URL under the cursor
+
+  -- Check if cursorword is a URL; if not, prepend with GitHub URL
+  if not url:match("^https?://") then
+    if string.find(url, "^[a-zA-Z0-9-_.]+/[a-zA-Z0-9-_.]+$") then url = "https://github.com/" .. url end
+  end
+
+  local command = nil
+
+  if vim.fn.has("mac") == 1 then
+    command = "open"
+  elseif vim.fn.has("unix") == 1 then
+    command = "xdg-open"
+  elseif vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
+    -- For Windows, we need to use 'start' command through cmd.exe
+    command = "cmd /c start"
+  end
+
+  if command then
+    vim.fn.jobstart(command .. " " .. url, { detach = true })
+    -- vim.fn.system(command .. ' "' .. url .. '"')
+  else
+    print("Unsupported platform for URL opening.")
+  end
+end
+
+local function url_repo()
+  local cursorword = vim.fn.expand("<cfile>")
+  if string.find(cursorword, "^[a-zA-Z0-9-_.]*/[a-zA-Z0-9-_.]*$") then
+    cursorword = "https://github.com/" .. cursorword
+  end
+  return cursorword or ""
+end
+
+vim.keymap.set("n", "gx", function()
+  open_url_under_cursor()
+  --  vim.fn.jobstart({ open_command, url_repo() }, { detach = true })
+end, { silent = true })
+
 require("user.options")
 require("user.autocmds")
 -- require("user.keymaps").setup()
@@ -165,6 +205,12 @@ require("lazy").setup({
     notify = false,
   },
   { import = "user.plugins" },
+  defaults = {
+    lazy = true,
+  },
+  install = {
+    colorscheme = require("user.ui.color_scheme").active,
+  },
   performance = {
     rtp = {
       disabled_plugins = {

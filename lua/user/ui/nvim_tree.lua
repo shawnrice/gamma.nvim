@@ -3,7 +3,8 @@ local icons = require("user.icons")
 local M = {
   "nvim-tree/nvim-tree.lua",
   version = "*",
-  lazy = false,
+  lazy = true,
+  -- event = "VimEnter",
   dependencies = {
     "nvim-tree/nvim-web-devicons",
   },
