@@ -3,6 +3,7 @@
 local M = {
   -- LSP Configuration & Plugins
   "neovim/nvim-lspconfig",
+  event = "BufReadPre",
   dependencies = {
     -- Automatically install LSPs to stdpath for neovim
     { "williamboman/mason.nvim", config = true },
@@ -136,7 +137,10 @@ function M.config()
         },
         workspace = {
           -- Make the server aware of Neovim runtime files
-          library = vim.api.nvim_get_runtime_file("", true),
+          library = {
+            "${3rd}/luv/library",
+            vim.api.nvim_get_runtime_file("", true),
+          },
           checkThirdParty = false,
         },
         telemetry = { enable = false },

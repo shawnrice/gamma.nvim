@@ -113,6 +113,8 @@ function M.setup()
   -- Move left or right a word
   nox("<M-Left>", "b")
   nox("<M-Right>", "w")
+  k("i", "<M-Left>", "<C-\\><C-o>b", opts)
+  k("i", "<M-Right>", "<C-\\><C-o>w", opts)
 
   -- Move up a paragraph (or block)
   nox("<M-Up>", utils.notify_and_feedkeys("{", "Use `{` to move up a block."))
@@ -138,6 +140,25 @@ function M.setup()
   visual_block("K", ":m '<-2<CR>gv=gv")
   visual_block("<A-j>", ":m '>+1<CR>gv=gv")
   visual_block("<A-k>", ":m '<-2<CR>gv=gv")
+
+  k("n", "<C-->", "<C-^>", { desc = "Switch to last buffer", noremap = true, silent = true })
+
+  k("n", "<leader>e", "<cmd>lua require('oil').toggle_float()<CR>", { desc = "Toggle Oil" })
+
+  -- Center buffer while navigating
+  -- normal("<C-u>", "<C-u>zz")
+  -- normal("<C-d>", "<C-d>zz")
+  -- normal("{", "{zz")
+  -- normal("}", "}zz")
+  -- normal("N", "Nzz")
+  -- normal("n", "nzz")
+  -- normal("G", "Gzz")
+  -- normal("gg", "ggzz")
+  -- normal("<C-i>", "<C-i>zz")
+  -- normal("<C-o>", "<C-o>zz")
+  -- normal("%", "%zz")
+  -- normal("*", "*zz")
+  -- normal("#", "#zz")
 end
 
 return M

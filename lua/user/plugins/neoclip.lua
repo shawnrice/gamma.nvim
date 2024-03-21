@@ -4,6 +4,7 @@ local M = {
     { "kkharji/sqlite.lua", module = "sqlite" },
     { "nvim-telescope/telescope.nvim" },
   },
+  module = "neoclip",
 }
 
 return M

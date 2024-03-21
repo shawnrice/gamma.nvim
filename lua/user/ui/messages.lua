@@ -1,5 +1,7 @@
 local M = {}
 
+-- NOTE: THIS DOESN'T WORK WHEN NOICE IS AROUND (and I don't think it's needed either...)
+
 local function clean_messages(result)
   -- Check if 'result' has an 'output' key and it's not nil
   if result.output then

@@ -11,6 +11,11 @@ function M.config()
   -- do stuff
   require("nvim-biscuits").setup({
     cursor_line_only = true,
+    language_config = {
+      vimdoc = {
+        disabled = true,
+      },
+    },
   })
 end
 

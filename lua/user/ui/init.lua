@@ -15,7 +15,8 @@ local M = {
   require("user.ui.sidebar"),
   require("user.ui.symbol_usage"),
   require("user.ui.toggleterm"),
-  require("user.ui.neo_tree"),
+  -- require("user.ui.neo_tree"),
+  require("user.ui.noice"),
 }
 
 return M

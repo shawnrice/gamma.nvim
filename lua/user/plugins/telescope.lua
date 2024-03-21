@@ -71,11 +71,17 @@ function M.config()
           hidden = true,
         },
       },
+      extensions = {
+        ["ui-select"] = {
+          require("telescope.themes").get_dropdown(),
+        },
+      },
     },
   })
 
   -- Enable telescope fzf native, if installed
   pcall(telescope.load_extension, "fzf")
+  pcall(require("telescope").load_extension, "ui-select")
 
   -- Telescope live_grep in git root
   local find_git_root = require("user.git.utils").find_git_root
@@ -124,6 +130,15 @@ function M.config()
       -- gf = { telescope_builtin.git_files, "Search [G]it [F]iles" }
     },
   }, { prefix = "<leader>", mode = "n" })
+
+  -- Slightly advanced example of overriding default behavior and theme
+  vim.keymap.set("n", "<leader>/", function()
+    -- You can pass additional configuration to telescope to change theme, layout, etc.
+    builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+      winblend = 10,
+      previewer = false,
+    }))
+  end, { desc = "[/] Fuzzily search in current buffer" })
 
   -- vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it
   -- [F]iles' })

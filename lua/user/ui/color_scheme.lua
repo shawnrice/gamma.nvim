@@ -22,15 +22,15 @@ local serenity = prepare("Wansmer/serenity.nvim", "serenity")
 local gruvsquirrel = prepare("mikesmithgh/gruvsquirrel.nvim", "gruvsquirrel")
 
 local M = {
-  nightfox,
+  -- nightfox,
   no_clown_fiesta,
   evergarden,
   -- everforest,
-  poimandres,
+  -- poimandres,
   -- gruvbox_material,
   -- nordic,
   -- serenity,
-  gruvsquirrel,
+  -- gruvsquirrel,
 }
 local function activate(theme)
   theme.priority = 1000
@@ -43,6 +43,8 @@ local function activate(theme)
   M.active = theme.name
 end
 
-activate(no_clown_fiesta)
+-- activate(no_clown_fiesta)
+activate(evergarden)
+-- activate(nightfox)
 
 return M

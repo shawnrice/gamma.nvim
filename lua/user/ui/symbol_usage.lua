@@ -2,7 +2,8 @@
 
 local M = {
   "Wansmer/symbol-usage.nvim",
-  event = "BufReadPre",
+  -- event = "BufReadPre",
+  module = true,
 }
 
 local function h(name) return vim.api.nvim_get_hl(0, { name = name }) end

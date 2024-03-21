@@ -19,7 +19,8 @@ function M.config()
       auto_trigger = true,
       -- accept = false, -- disable built-in keymapping
       keymap = {
-        accept = "<Tab>",
+        accept = "<S-Right>",
+        accept_word = "<M-Tab>",
       },
     },
   })

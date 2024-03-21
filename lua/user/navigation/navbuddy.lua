@@ -6,6 +6,7 @@ local M = {
     "numToStr/Comment.nvim",
     "nvim-telescope/telescope.nvim",
   },
+  event = "VimEnter",
   opts = { lsp = { auto_attach = true } },
   init = function()
     vim.keymap.set(

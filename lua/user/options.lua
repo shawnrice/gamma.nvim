@@ -1,8 +1,10 @@
 local options = {
+  breakindent = true, -- @see https://stackoverflow.com/questions/1204149/smart-wrap-in-vim
   backup = false, -- creates a backup file
   clipboard = "unnamedplus", -- allows neovim to access the system clipboard
   cmdheight = 2, -- more space in the neovim command line for displaying messages
   completeopt = { "menu", "menuone", "noselect" }, -- mostly just for cmp
+  colorcolumn = "100", -- adds a color column after 80 characters
   conceallevel = 0, -- so that `` is visible in markdown files
   fileencoding = "utf-8", -- the encoding written to a file
   hlsearch = true, -- highlight all matches on previous search pattern
@@ -38,6 +40,15 @@ local options = {
   sidescrolloff = 8, -- minimal number of screen columns either side of cursor if wrap is `false`
   guifont = "monospace:h17", -- the font used in graphical neovim applications
   whichwrap = "bs<>[]hl", -- which "horizontal" keys are allowed to travel to prev/next line
+
+  guicursor = {
+    "n-v-c:block", -- Normal, visual, command-line: block cursor
+    "i-ci-ve:ver25", -- Insert, command-line insert, visual-exclude: vertical bar cursor with 25% width
+    "r-cr:hor20", -- Replace, command-line replace: horizontal bar cursor with 20% height
+    "o:hor50", -- Operator-pending: horizontal bar cursor with 50% height
+    -- "a:blinkwait700-blinkoff400-blinkon250", -- All modes: blinking settings
+    "sm:block-blinkwait175-blinkoff150-blinkon175", -- Showmatch: block cursor with specific blinking settings
+  },
 }
 
 for k, v in pairs(options) do

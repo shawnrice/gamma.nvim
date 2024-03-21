@@ -14,11 +14,13 @@ function M.config()
 
   local function cmd(command) return table.concat({ "<Cmd>", command, "<CR>" }) end
 
+  local k = vim.keymap.set
+  local opt = function(desc) return { desc = desc, noremap = true, silent = true } end
   -- TODO rethink these keymaps
-  vim.keymap.set("n", "<C-w>z", cmd("WindowsMaximize"))
-  vim.keymap.set("n", "<C-w>_", cmd("WindowsMaximizeVertically"))
-  vim.keymap.set("n", "<C-w>|", cmd("WindowsMaximizeHorizontally"))
-  vim.keymap.set("n", "<C-w>=", cmd("WindowsEqualize"))
+  k("n", "<C-w>z", cmd("WindowsMaximize"), opt("Maximize window"))
+  k("n", "<C-w>_", cmd("WindowsMaximizeVertically"), opt("Maximize window vertically"))
+  k("n", "<C-w>|", cmd("WindowsMaximizeHorizontally"), opt("Maximize window horizontally"))
+  k("n", "<C-w>=", cmd("WindowsEqualize"), opt("Equalize windows"))
 end
 
 return M

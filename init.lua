@@ -1,23 +1,16 @@
--- Set <space> as the leader key
--- See `:help mapleader`
---  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+-- Require the options first. These need to be set before we start loading plugins
+require("user.options")
 
--- function concat_tables(...)
---   local result = {}
---   local args = { ... }
---   for _, t in ipairs(args) do
---     if type(t) == "table" then -- Check if the argument is a table
---       for _, v in ipairs(t) do
---         table.insert(result, v)
---       end
---     else
---       error("concat_tables expects table arguments, but received a " .. type(t))
---     end
---   end
---   return result
--- end
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    local arg = vim.fn.argv(0)
+    print(arg)
+    if arg ~= "" then
+      local isdir = vim.fn.isdirectory(arg)
+      if isdir ~= 0 then vim.cmd("cd " .. arg) end
+    end
+  end,
+})
 
 local function open_url_under_cursor()
   local url = vim.fn.expand("<cfile>") -- Get the URL under the cursor
@@ -46,20 +39,8 @@ local function open_url_under_cursor()
   end
 end
 
-local function url_repo()
-  local cursorword = vim.fn.expand("<cfile>")
-  if string.find(cursorword, "^[a-zA-Z0-9-_.]*/[a-zA-Z0-9-_.]*$") then
-    cursorword = "https://github.com/" .. cursorword
-  end
-  return cursorword or ""
-end
+vim.keymap.set("n", "gx", open_url_under_cursor, { silent = true })
 
-vim.keymap.set("n", "gx", function()
-  open_url_under_cursor()
-  --  vim.fn.jobstart({ open_command, url_repo() }, { detach = true })
-end, { silent = true })
-
-require("user.options")
 require("user.autocmds")
 -- require("user.keymaps").setup()
 vim.defer_fn(function() require("user.keymaps").setup() end, 0)
@@ -82,16 +63,6 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
   -- Useful plugin to show you pending keybinds.
   { "folke/which-key.nvim", opts = {} },
-
-  -- {
-  --   "EdenEast/nightfox.nvim",
-  --   priority = 1000,
-  --   lazy = false,
-  --   config = function()
-  --     vim.o.background = "dark"
-  --     vim.cmd("colorscheme " .. "nordfox")
-  --   end,
-  -- },
 
   {
     --- my show messages uses this. If nothing else does, then I should find something else
@@ -185,6 +156,8 @@ local plugins = {
 function Spec(plugin) table.insert(plugins, { import = plugin }) end
 
 Spec("user.navigation.leap")
+Spec("user.navigation.oil")
+Spec("user.scratch")
 
 -- [[ Configure plugins ]]
 -- NOTE: Here is where you install your plugins.
@@ -278,6 +251,8 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 require("user.keymaps").setup()
 
 require("user.ui.messages")
+require("user.ui.rotate_window")
+require("user.vertical_help")
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
