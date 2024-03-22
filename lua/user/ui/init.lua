@@ -10,6 +10,7 @@ local M = {
     "stevearc/dressing.nvim",
     opts = {},
   },
+  require("user.ui.harpoon"),
   -- ! Fix the below
   require("user.ui.goto_preview"),
   require("user.ui.sidebar"),

@@ -5,7 +5,7 @@ local function prepare(url, name)
   }
 end
 
-local nightfox = prepare("EdenEast/nightfox.nvim", "nordfox")
+local nightfox = prepare("EdenEast/nightfox.nvim", "carbonfox")
 
 local no_clown_fiesta = prepare("aktersnurra/no-clown-fiesta.nvim", "no-clown-fiesta")
 
@@ -22,7 +22,7 @@ local serenity = prepare("Wansmer/serenity.nvim", "serenity")
 local gruvsquirrel = prepare("mikesmithgh/gruvsquirrel.nvim", "gruvsquirrel")
 
 local M = {
-  -- nightfox,
+  nightfox,
   no_clown_fiesta,
   evergarden,
   -- everforest,
@@ -43,8 +43,8 @@ local function activate(theme)
   M.active = theme.name
 end
 
--- activate(no_clown_fiesta)
-activate(evergarden)
+activate(no_clown_fiesta)
+-- activate(evergarden)
 -- activate(nightfox)
 
 return M
