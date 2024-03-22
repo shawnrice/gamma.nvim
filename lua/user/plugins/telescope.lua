@@ -48,6 +48,10 @@ function M.config()
         "--hidden",
         "--glob=!.git/",
       },
+      layout_config = {
+        prompt_position = "top",
+      },
+      sorting_strategy = "descending",
       mappings = {
         i = {
           ["<C-u>"] = false,
